@@ -3,6 +3,18 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
     <title>Login</title>
 </head>
 
@@ -10,34 +22,71 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form id="loginForm">
                     <h2>Login</h2>
                     <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
-                        <label for="">Email</label>
+                        <ion-icon name="person"></ion-icon>
+                        <input type="text" id="username" required>
+                        <label for="username">Username</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <input type="password" id="password" required>
-                        <label for="">Password</label>
+                        <label for="password">Password</label>
                         <span class="toggle-password" onclick="togglePasswordVisibility()"></span>
                     </div>
                     <div class="forget">
                         <label for=""><input type="checkbox">Remember Me <a href="#">Forget Password</a></label>
-
                     </div>
-                    <button>Log in</button>
+                    <button type="submit">Log in</button>
                     <div class="register">
-                        <p>Don't have a account <a href="#">Register</a></p>
+                        <p>Don't have an account <a href="#">Register</a></p>
                     </div>
                 </form>
             </div>
         </div>
     </section>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="app.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var passwordIcon = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordIcon.classList.remove("ion-md-eye");
+                passwordIcon.classList.add("ion-md-eye-off");
+            } else {
+                passwordInput.type = "password";
+                passwordIcon.classList.remove("ion-md-eye-off");
+                passwordIcon.classList.add("ion-md-eye");
+            }
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "Matthew" && password === "Jesslyn"){
+                // Redirect to apple.com
+                window.location.href = "https://ceced20.github.io/WizardShakes/index1.html";
+            } else {
+                var errorMessage = document.createElement("p");
+                errorMessage.textContent = "Invalid username or password.";
+                errorMessage.classList.add("error-message");
+                document.getElementById("loginForm").appendChild(errorMessage);
+
+                setTimeout(function () {
+                    errorMessage.classList.add("fade-out");
+                    setTimeout(function () {
+                        errorMessage.remove();
+                    }, 500); // Remove the error message after fading out
+                }, 3000); // Show the error message for 3 seconds
+            }
+        });
+    </script>
 </body>
 
 </html>
