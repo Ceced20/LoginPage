@@ -69,9 +69,10 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            if (username === "Matthew" && password === "Jesslyn"){
-                // Redirect to apple.com
-                window.location.href = "https://ceced20.github.io/WizardShakes/index1.html";
+            if (username === "Matthew" && password === "Jesslyn") {
+                window.location.href = "https://ceced20.github.io/WizardShakes/index1.html"; // Redirect to Jesslyn.html
+            } else if (username === "Ceced" && password === "admin") {
+                window.location.href = "https://ceced20.github.io/WizardShakes/index1.html"; // Redirect to Ceced.html
             } else {
                 var errorMessage = document.createElement("p");
                 errorMessage.textContent = "Invalid username or password.";
@@ -86,6 +87,7 @@
                 }, 3000); // Show the error message for 3 seconds
             }
         });
+
     </script>
 </body>
 
